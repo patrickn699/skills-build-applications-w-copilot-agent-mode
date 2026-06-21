@@ -1,9 +1,11 @@
 // API configuration using Vite environment variable
-// Document: set VITE_CODESPACE_NAME in frontend/.env.local when using Codespaces
+// Document: set VITE_CODESPACE_NAME in frontend/.env.local when using Codespaces.
 export const CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME;
-export const API_BASE = CODESPACE_NAME
+export const API_BASE = import.meta.env.DEV
+  ? ''
+  : CODESPACE_NAME
   ? `https://${CODESPACE_NAME}-8000.app.github.dev`
-  : 'http://localhost:8000';
+  : '';
 
 export function extractList(responseJson) {
   if (!responseJson) return [];
