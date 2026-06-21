@@ -5,7 +5,10 @@ import activitiesRouter from './routes/activities';
 import leaderboardRouter from './routes/leaderboard';
 import workoutsRouter from './routes/workouts';
 
+import corsMiddleware from './middleware/cors';
+
 const app = express();
+app.use(corsMiddleware);
 app.use(express.json());
 
 app.get('/', (req, res) => {

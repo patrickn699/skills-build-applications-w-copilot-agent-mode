@@ -8,7 +8,7 @@ export default function Teams() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API_BASE}/api/teams`)
+    fetch(`${API_BASE}/api/teams/`)
       .then((r) => r.json())
       .then((json) => setTeams(extractList(json)))
       .catch((e) => setError(e.message || String(e)))

@@ -8,7 +8,7 @@ export default function Users() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API_BASE}/api/users`)
+    fetch(`${API_BASE}/api/users/`)
       .then((r) => r.json())
       .then((json) => setUsers(extractList(json)))
       .catch((e) => setError(e.message || String(e)))

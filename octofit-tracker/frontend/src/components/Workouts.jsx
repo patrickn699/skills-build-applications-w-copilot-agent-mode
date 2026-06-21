@@ -8,7 +8,7 @@ export default function Workouts() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API_BASE}/api/workouts`)
+    fetch(`${API_BASE}/api/workouts/`)
       .then((r) => r.json())
       .then((json) => setList(extractList(json)))
       .catch((e) => setError(e.message || String(e)))

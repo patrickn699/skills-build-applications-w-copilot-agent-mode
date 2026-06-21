@@ -8,7 +8,7 @@ export default function Activities() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API_BASE}/api/activities`)
+    fetch(`${API_BASE}/api/activities/`)
       .then((r) => r.json())
       .then((json) => setItems(extractList(json)))
       .catch((e) => setError(e.message || String(e)))

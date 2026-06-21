@@ -8,7 +8,7 @@ export default function Leaderboard() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API_BASE}/api/leaderboard`)
+    fetch(`${API_BASE}/api/leaderboard/`)
       .then((r) => r.json())
       .then((json) => setEntries(extractList(json)))
       .catch((e) => setError(e.message || String(e)))
