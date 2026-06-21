@@ -7,14 +7,16 @@ const codespaceBaseUrl = process.env.CODESPACE_NAME
   ? `https://${process.env.CODESPACE_NAME}-${port}.app.github.dev`
   : null;
 
-connectDatabase().catch((error) => {
-  console.error('MongoDB connection error:', error);
-  process.exit(1);
-});
-
-app.listen(port, host, () => {
-  console.log(`Backend listening on http://${host}:${port}`);
-  if (codespaceBaseUrl) {
-    console.log(`Codespace API available at ${codespaceBaseUrl}`);
-  }
-});
+connectDatabase()
+  .then(() => {
+    app.listen(port, host, () => {
+      console.log(`Backend listening on http://${host}:${port}`);
+      if (codespaceBaseUrl) {
+        console.log(`Codespace API available at ${codespaceBaseUrl}`);
+      }
+    });
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  });
