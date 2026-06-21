@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import { connectDatabase, disconnectDatabase } from '../config/database';
 import User from '../models/User';
 import Team from '../models/Team';
 import Activity from '../models/Activity';
@@ -7,9 +7,7 @@ import Leaderboard from '../models/Leaderboard';
 
 // Seed the octofit_db database with test data
 async function main() {
-  const mongoUri = 'mongodb://127.0.0.1:27017/octofit_db';
-  await mongoose.connect(mongoUri);
-  console.log('Connected to MongoDB at', mongoUri);
+  await connectDatabase();
 
   await Promise.all([
     User.deleteMany({}),
@@ -73,8 +71,8 @@ async function main() {
   console.log('Inserted sample workouts:', workouts.length);
   console.log('Inserted leaderboard entries:', leaderboardEntries.length);
 
-  await mongoose.disconnect();
-  console.log('Seed complete. Disconnected from MongoDB.');
+  await disconnectDatabase();
+  console.log('Seed complete.');
 }
 
 main().catch((error) => {
